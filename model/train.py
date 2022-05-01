@@ -4,7 +4,7 @@ import torch.nn as nn
 from model import ConvNetwork
 from torch.utils.data import DataLoader
 import torchvision.transforms.transforms as transforms
-import torchvision.transforms.functional_pil as pil_transforms
+import matplotlib.pyplot as plt
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Device {device}")
@@ -12,7 +12,7 @@ print(f"Device {device}")
 
 batch_size = 10
 lr = 0.0001
-num_epochs = 34
+num_epochs = 72
 
 
 transform = transforms.Compose(
@@ -36,7 +36,7 @@ model = model.to(device)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-
+loss_his = []
 n_total_steps = len(train_loader)
 print("Start training")
 for epoch in range(num_epochs):
@@ -50,6 +50,7 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         if(i+1) % 512 == 0:
+            loss_his.append(loss.cpu().detach().numpy())
             print(
                 f"Epoch: {epoch+1}/{num_epochs}, step: {i+1}/{n_total_steps}, loss: {loss.item():.4f}")
             with torch.no_grad():
@@ -66,12 +67,19 @@ for epoch in range(num_epochs):
                 print(f"accuracy={acc:.4f}")
 print("Training finished")
 torch.save(model.state_dict(), "./trained_model.pt")
+iters = range(1, len(loss_his)+1)
+plt.plot(iters, loss_his, 'r--')
+plt.plot(iters, loss_his, 'b-')
+plt.legend(['Training Loss'])
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.show()
 print("Trained model saved")
 with torch.no_grad():
     n_correct = 0
     n_samples = 0
-    n_class_correct = [0 for i in range(10)]
-    n_class_samples = [0 for i in range(10)]
+    n_class_correct = [0 for i in range(4)]
+    n_class_samples = [0 for i in range(4)]
     for images, labels in test_loader:
         images = images.to(device)
         labels = labels.to(device)
@@ -90,6 +98,6 @@ with torch.no_grad():
     acc = 100.0 * n_correct / n_samples
     print(f'Accuracy of the network: {acc} %')
 
-    for i in range(10):
+    for i in range(4):
         acc = 100.0 * n_class_correct[i] / n_class_samples[i]
         print(f'Accuracy of {classes[i]}: {acc} %')
