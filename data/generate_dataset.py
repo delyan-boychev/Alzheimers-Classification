@@ -1,6 +1,7 @@
 import csv
+from math import ceil, floor
 import os
-import enumClasses
+import enumClasses as enumClasses
 import random
 import zipfile
 import shutil
@@ -13,18 +14,24 @@ with zipfile.ZipFile(dataset_archive, 'r') as zip_ref:
     zip_ref.extractall("./")
 
 directories = os.listdir(folder_extracted)
-l = []
+l = [[], [], [], []]
 
 f = open('./train.csv', 'w')
 f2 = open('./test.csv', 'w')
 w = csv.writer(f)
 w2 = csv.writer(f2)
+w.writerow(['label', 'file_name'])
+w2.writerow(['label', 'file_name'])
+k = 0
 for dir in directories:
     for file in os.listdir(os.path.join(folder_extracted, dir)):
-        l.append([enumClasses.Classes[dir].value, file])
-random.shuffle(l)
-train = l[:int(len(l)*0.8)]
-test = l[int(len(l)*0.8):]
+        l[k].append([enumClasses.Classes[dir].value, file])
+    k += 1
+train = []
+test = []
+for i in range(k):
+    train = train + l[i][:round(len(l[i])*0.8)]
+    test = test + l[i][round(len(l[i])*0.8):]
 for tr in train:
     w.writerow(tr)
 for ts in test:

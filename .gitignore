@@ -3,3 +3,4 @@ Images
 test.csv
 train.csv
 Dataset
+trained_model.pt
