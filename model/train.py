@@ -37,6 +37,7 @@ model = model.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 loss_his = []
+acc_his = []
 n_total_steps = len(train_loader)
 print("Start training")
 for epoch in range(num_epochs):
@@ -64,15 +65,23 @@ for epoch in range(num_epochs):
                     n_samples += labels.shape[0]
                     n_correct += (predictions == labels).sum().item()
                 acc = 100 * n_correct/n_samples
+                acc_his.append(acc)
                 print(f"accuracy={acc:.4f}")
 print("Training finished")
 torch.save(model.state_dict(), "./trained_model.pt")
 iters = range(1, len(loss_his)+1)
 plt.plot(iters, loss_his, 'r--')
 plt.plot(iters, loss_his, 'b-')
-plt.legend(['Training Loss'])
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
+plt.savefig("../results/loss.png")
+plt.show()
+plt.clf()
+plt.plot(iters, acc_his, 'r--')
+plt.plot(iters, acc_his, 'b-')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.savefig("../results/acc.png")
 plt.show()
 print("Trained model saved")
 with torch.no_grad():
