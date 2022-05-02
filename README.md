@@ -12,18 +12,22 @@ The purpose is to develop testing algorithms for Alzheimer's Disease classificat
 |Linear-6    |[-1, 84]           |10,164  |
 |Linear-7    |[-1, 4]            |340     |
 
-Total params: 616,678
-Trainable params: 616,678
-Non-trainable params: 0
-Input size (MB): 0.06
-Forward/backward pass size (MB): 0.63
-Params size (MB): 2.35
-Estimated Total Size (MB): 3.05
+Total params: 616,678 <br/>
+Trainable params: 616,678 <br/>
+Non-trainable params: 0 <br/>
+Input size (MB): 0.06 <br/>
+Forward/backward pass size (MB): 0.63 <br/>
+Params size (MB): 2.35 <br/>
+Estimated Total Size (MB): 3.05 <br/>
 
 # Used data
 I used the open-source dataset provided in Kaggle(https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset). I converted the data into CSV format to be easier for training in PyTorch. I split the data into 80% of every class for training and 20% of every class for testing.
 
-
-![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss.png?raw=true)
-![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc.png?raw=true)
+# Training the model
+I used Cross Entropy Loss Function and Adam optimizer.<br/>
+**Graph of the loss function for 100 epochs**<br/>
+![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss.png?raw=true)<br/>
+**Graph of the test accuracy for 100 epochs**<br/>
+![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc.png?raw=true)<br/>
+**Graph of the test and trainign accuracy for 100 epochs**<br/>
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc_cmp.png?raw=true)
