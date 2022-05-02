@@ -2,15 +2,15 @@
 
 # Aim of the project
 The purpose is to develop testing algorithms for Alzheimer's Disease classification. I am using a Convolutional neural network to classify the patient's status. The input data is an MRI (Magnetic resonance imaging) of the brain. The number of output classes is 4. They are non-demented, very mild demented, mild demented and moderate demented. Check out the structure of the Convolutional Neural Network.
-|Layer (type)| Output Shape      | Param #|
-|------------|-------------------|--------|
-|Conv2d-1    |[-1, 3, 124, 124]  |78      |
-|MaxPool2d-2 |[-1, 3, 62, 62]    |0       |
-|Conv2d-3    |[-1, 6, 58, 58]    |456     |
-|MaxPool2d-4 |[-1, 6, 29, 29]    |0       |
-|Linear-5    |[-1, 120]          |605,640 |
-|Linear-6    |[-1, 84]           |10,164  |
-|Linear-7    |[-1, 4]            |340     |
+|Layer (type)|Input shape  | Output Shape      |
+|------------|-------------|-------------------|
+|Conv2d-1    |(1, 128, 128)|(3, 124, 124)      |
+|MaxPool2d-2 |(3, 124, 124)|(3, 62, 62)        |
+|Conv2d-3    |(3, 62, 62)  |(6, 58, 58)        |
+|MaxPool2d-4 |(6, 58, 58)  |(6, 29, 29)        |
+|Linear-5    |(5046)       |(120)              |
+|Linear-6    |(120)        |(84)               |
+|Linear-7    |(84)         |(4)                |
 
 Total params: 616,678 <br/>
 Trainable params: 616,678 <br/>
