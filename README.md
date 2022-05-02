@@ -24,7 +24,16 @@ Estimated Total Size (MB): 3.05 <br/>
 I used the open-source dataset provided in Kaggle(https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset). I converted the data into CSV format to be easier for training in PyTorch. I split the data into 80% of every class for training and 20% of every class for testing.
 
 # Training the model
-I used Cross Entropy Loss Function and Adam optimizer.<br/>
+I used Cross Entropy Loss Function and Adam optimizer
+# Results:
+|Accuracy of:      |%                |
+|------------------|-----------------|
+|Network           |97.890625        |
+|Non demented      |98.59375         |
+|Very mild demented|97.09821428571429|
+|Mild demented     |97.20670391061452|
+|Moderate demented |100.0            |
+
 **Graph of the loss function for 100 epochs**<br/>
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss.png?raw=true)<br/>
 **Graph of the test accuracy for 100 epochs**<br/>
