@@ -1,4 +1,4 @@
-# Alzhimer's classification
+# Alzheimer's classification
 
 # Aim of the project
 The purpose is to develop testing algorithms for Alzheimer's Disease classification. I am using a Convolutional neural network to classify the patient's status. The input data is an MRI (Magnetic resonance imaging) of the brain. The number of output classes is 4. They are non-demented, very mild demented, mild demented and moderate demented. Check out the structure of the Convolutional Neural Network.
