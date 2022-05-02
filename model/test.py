@@ -7,7 +7,7 @@ import os
 import torchvision.transforms.transforms as transforms
 
 
-if os.path.exists("./trained_model.pt"):
+if os.path.exists("../results/trained_model.pt"):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device {device}")
 
@@ -22,7 +22,7 @@ if os.path.exists("./trained_model.pt"):
         dataset=test, batch_size=batch_size, shuffle=False)
 
     model = ConvNetwork().to(device)
-    model.load_state_dict(torch.load("./trained_model.pt"))
+    model.load_state_dict(torch.load("../results/trained_model.pt"))
     classes = ("Non demented", "Very mild demented",
                "Mild demented", "Moderate demented")
 

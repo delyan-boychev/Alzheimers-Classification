@@ -12,7 +12,7 @@ print(f"Device {device}")
 
 batch_size = 10
 lr = 0.0001
-num_epochs = 72
+num_epochs = 100
 
 
 transform = transforms.Compose(
@@ -37,7 +37,8 @@ model = model.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 loss_his = []
-acc_his = []
+acc_train_his = []
+acc_test_his = []
 n_total_steps = len(train_loader)
 print("Start training")
 for epoch in range(num_epochs):
@@ -53,7 +54,7 @@ for epoch in range(num_epochs):
         if(i+1) % 512 == 0:
             loss_his.append(loss.cpu().detach().numpy())
             print(
-                f"Epoch: {epoch+1}/{num_epochs}, step: {i+1}/{n_total_steps}, loss: {loss.item():.4f}")
+                f"Epoch: {epoch+1}/{num_epochs}, step: {i+1}/{n_total_steps}, loss: {loss.item():.10f}")
             with torch.no_grad():
                 n_correct = 0
                 n_samples = 0
@@ -65,23 +66,40 @@ for epoch in range(num_epochs):
                     n_samples += labels.shape[0]
                     n_correct += (predictions == labels).sum().item()
                 acc = 100 * n_correct/n_samples
-                acc_his.append(acc)
-                print(f"accuracy={acc:.4f}")
+                acc_test_his.append(acc)
+                print(f"accuracy_test={acc:.4f}")
+                n_correct = 0
+                n_samples = 0
+                for images, labels in train_loader:
+                    images = images.to(device)
+                    labels = labels.to(device)
+                    outputs = model(images)
+                    _, predictions = torch.max(outputs, 1)
+                    n_samples += labels.shape[0]
+                    n_correct += (predictions == labels).sum().item()
+                acc = 100 * n_correct/n_samples
+                acc_train_his.append(acc)
+                print(f"accuracy_train={acc:.4f}")
 print("Training finished")
-torch.save(model.state_dict(), "./trained_model.pt")
+torch.save(model.state_dict(), "../results/trained_model.pt")
 iters = range(1, len(loss_his)+1)
-plt.plot(iters, loss_his, 'r--')
 plt.plot(iters, loss_his, 'b-')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.savefig("../results/loss.png")
 plt.show()
 plt.clf()
-plt.plot(iters, acc_his, 'r--')
-plt.plot(iters, acc_his, 'b-')
+plt.plot(iters, acc_test_his, 'b-')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.savefig("../results/acc.png")
+plt.show()
+plt.clf()
+plt.plot(iters, acc_test_his, 'r-', label="Test accuracy")
+plt.plot(iters, acc_train_his, 'b-', label="Train accuracy")
+plt.legend()
+plt.xlabel('Epoch')
+plt.savefig("../results/acc_cmp.png")
 plt.show()
 print("Trained model saved")
 with torch.no_grad():
