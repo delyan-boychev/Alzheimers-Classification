@@ -1,6 +1,6 @@
 # Alzheimer's classification
 
-# Aim of the project
+## Aim of the project
 The purpose is to develop testing algorithms for Alzheimer's Disease classification. I am using a Convolutional neural network to classify the patient's status. The input data is an MRI (Magnetic resonance imaging) of the brain. The number of output classes is 4. They are non-demented, very mild demented, mild demented and moderate demented. Check out the structure of the Convolutional Neural Network.
 |Layer (type)|Input shape  | Output Shape      |
 |------------|-------------|-------------------|
@@ -20,12 +20,12 @@ Forward/backward pass size (MB): 0.63 <br/>
 Params size (MB): 2.35 <br/>
 Estimated Total Size (MB): 3.05 <br/>
 
-# Used data
+## Used data
 I used the open-source dataset provided in Kaggle(https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset). I converted the data into CSV format to be easier for training in PyTorch. I split the data into 80% of every class for training and 20% of every class for testing.
 
-# Training the model
+## Training the model
 I used Cross Entropy Loss Function and Adam optimizer
-# Results:
+## Results:
 |Accuracy of:      |%                |
 |------------------|-----------------|
 |Network           |97.890625        |
@@ -34,9 +34,9 @@ I used Cross Entropy Loss Function and Adam optimizer
 |Mild demented     |97.20670391061452|
 |Moderate demented |100.0            |
 
-**Graph of the loss function for 100 epochs**<br/>
+### Graph of the loss function for 100 epochs
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss.png?raw=true)<br/>
-**Graph of the test accuracy for 100 epochs**<br/>
+### Graph of the test accuracy for 100 epochs
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc.png?raw=true)<br/>
-**Graph of the test and trainign accuracy for 100 epochs**<br/>
+### Graph of the test and trainign accuracy for 100 epochs
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc_cmp.png?raw=true)
