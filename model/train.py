@@ -1,4 +1,4 @@
-from dataset import AlzhimerDataset
+from dataset import AlzheimerDataset
 import torch
 import torch.nn as nn
 from model import ConvNetwork
@@ -19,9 +19,9 @@ transform = transforms.Compose(
     [transforms.ToTensor()])
 
 
-train = AlzhimerDataset(
+train = AlzheimerDataset(
     "../data/train.csv", "../data/Images", transform=transform)
-test = AlzhimerDataset(
+test = AlzheimerDataset(
     "../data/test.csv", "../data/Images", transform=transform)
 train_loader = DataLoader(dataset=train, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(dataset=test, batch_size=batch_size, shuffle=False)

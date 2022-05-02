@@ -1,11 +1,11 @@
-from dataset import AlzhimerDataset
+from dataset import AlzheimerDataset
 import torch
 import torch.nn as nn
 from model import ConvNetwork
+from torchsummary import summary
 from torch.utils.data import DataLoader
 import os
 import torchvision.transforms.transforms as transforms
-
 
 if os.path.exists("../results/trained_model.pt"):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -16,7 +16,7 @@ if os.path.exists("../results/trained_model.pt"):
     transform = transforms.Compose(
         [transforms.ToTensor()])
 
-    test = AlzhimerDataset(
+    test = AlzheimerDataset(
         "../data/test.csv", "../data/Images", transform=transform)
     test_loader = DataLoader(
         dataset=test, batch_size=batch_size, shuffle=False)
@@ -25,7 +25,7 @@ if os.path.exists("../results/trained_model.pt"):
     model.load_state_dict(torch.load("../results/trained_model.pt"))
     classes = ("Non demented", "Very mild demented",
                "Mild demented", "Moderate demented")
-
+    print(summary(model, input_size=(1, 128, 128)))
     with torch.no_grad():
         n_correct = 0
         n_samples = 0

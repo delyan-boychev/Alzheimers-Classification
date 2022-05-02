@@ -4,7 +4,7 @@ import os
 from PIL import Image
 
 
-class AlzhimerDataset(Dataset):
+class AlzheimerDataset(Dataset):
     def __init__(self, csv_path, images_folder, transform=None):
         self.df = pd.read_csv(csv_path)
         self.images_folder = images_folder
