@@ -34,9 +34,13 @@ I used Cross Entropy Loss Function and Adam optimizer
 |Mild demented     |97.20670391061452|
 |Moderate demented |100.0            |
 
-### Graph of the loss function for 100 epochs training
-![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss.png?raw=true)<br/>
-### Graph of the test set accuracy for 100 epochs training
+
+### Graph of train loss for 100 epochs training
+![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss_train.png?raw=true)<br/>
+
+### Graph of train and test loss for 100 epochs training
+![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/loss_cmp.png?raw=true)<br/>
+### Graph of test set accuracy for 100 epochs training
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc.png?raw=true)<br/>
-### Graph of the test and training set accuracy for 100 epochs training
+### Graph of test and training set accuracy for 100 epochs training
 ![alt text](https://github.com/delyanbg05/AlzhimerClassification/blob/master/results/acc_cmp.png?raw=true)
