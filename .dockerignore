@@ -1,0 +1,5 @@
+.git
+results
+test.csv
+train.csv
+**/__pycache__
