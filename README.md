@@ -21,7 +21,7 @@ Params size (MB): 2.35 <br/>
 Estimated Total Size (MB): 3.05 <br/>
 
 ## Used data
-I used the open-source dataset provided in Kaggle(https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset). I converted the data into CSV format to be easier for training in PyTorch. I split the data into 80% of every class for training and 20% of every class for testing.
+I used the open-source dataset provided in Kaggle(https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset). I created a CSV file with annotations to be easier to train with PyTorch. I split the data into 80% of every class for training and 20% of every class for testing.
 
 ## Training the model
 I used Cross Entropy Loss Function and Adam optimizer
